@@ -8,9 +8,19 @@
 </head>
 <body>
      {% block content %}
+        <div class="row mt-4">
+            <div class="col-lg-4">
+                <img class="img-thumbnail border-0" src="{%static 'images/img.jpg'%}">
+                <div class="Box-element">
+                    <h3><STRONG>Product</STRONG></h3>
+                    <hr>
+                    <button class="btn btn-outline-success">Add to kart</button>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <h4 style="float:right">$10</h4>
+                </div>
+            </div>
+        </div>
 
-        <h1>hi</h1>
-        <img src="{% static 'images/img.jpg' %}" class="img-fluid" alt="responsive">
 
      {% endblock content %}
 </body>
