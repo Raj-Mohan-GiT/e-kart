@@ -41,6 +41,23 @@
                     </form>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div style="margin-top:60px" class="Box-element">
+                    <a class="btn btn-success" href="{% url 'kart' %}">&#x2190; Back to kart</a>
+                    <hr>
+                    <h3>Order Summary</h3>
+                    <hr>
+                        <div class="kart-row">
+                            <div style="flex:2"><img class="row-images" src="{% static 'images/img.jpg' %}"></div>
+                            <div style="flex:2"><p>Product 1</p></div>
+                            <div style="flex:1"><p>$20.00</p></div>
+                            <div style="flex:1"><p>x2</p></div>
+                        </div>
+                    <h5>Items:   2</h5>
+                    <h5>Total:   $40</h5>
+                </div>
+
+            </div>
         </div>
 
     {% endblock content %}
