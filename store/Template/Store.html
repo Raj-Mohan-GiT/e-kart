@@ -9,16 +9,18 @@
 <body>
      {% block content %}
         <div class="row mt-4">
+            {% for product in products%}
             <div class="col-lg-4">
-                <img class="img-thumbnail border-0" src="{%static 'images/img.jpg'%}">
+                <img class="img-thumbnail border-0" src="{{product.image.url}}">
                 <div class="Box-element">
-                    <h3><STRONG>Product</STRONG></h3>
+                    <h3><STRONG>{{product.name}}</STRONG></h3>
                     <hr>
                     <button class="btn btn-outline-success">Add to kart</button>
                     <a class="btn btn-outline-success" href="#">View</a>
-                    <h4 style="float:right">$10</h4>
+                    <h4 style="float:right">Rs.{{product.price}}</h4>
                 </div>
             </div>
+            {% endfor %}
         </div>
 
 
