@@ -31,12 +31,36 @@ class Order(models.Model):
     def __str__(self):
         return str(self.transaction_id)
 
+    @property
+    def get_kart_total(self):
+        return sum([item.get_item_total for item in self.orderitem_set.all()])
+
+    @property
+    def get_total_count(self):
+        return sum([item.quantity for item in self.orderitem_set.all()])
+
+    @property
+    def check_shipping(self):
+        shipping = False
+
+        order_items = self.orderitem_set.all()
+
+        for item in order_items:
+            if not item.product.digital:
+                shipping = True
+
+        return shipping
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_item_total(self):
+        return self.product.price * self.quantity
 
 
 class ShippingAddress(models.Model):

@@ -46,20 +46,29 @@
                     <a class="btn btn-success" href="{% url 'kart' %}">&#x2190; Back to kart</a>
                     <hr>
                     <h3>Order Summary</h3>
+                    {%for item in items%}
                     <hr>
                         <div class="kart-row">
-                            <div style="flex:2"><img class="row-images" src="{% static 'images/img.jpg' %}"></div>
-                            <div style="flex:2"><p>Product 1</p></div>
-                            <div style="flex:1"><p>$20.00</p></div>
-                            <div style="flex:1"><p>x2</p></div>
+                            <div style="flex:2"><img class="row-images" src="{{item.product.image.url}}"></div>
+                            <div style="flex:2"><p>{{item.product.name}}</p></div>
+                            <div style="flex:1"><p>{{item.product.price}}</p></div>
+                            <div style="flex:1"><p>x{{item.quantity}}</p></div>
                         </div>
-                    <h5>Items:   2</h5>
-                    <h5>Total:   $40</h5>
+                    {% endfor %}
+                    <h5>Items:{{order.get_total_count}}</h5>
+                    <h5>Total:{{order.get_kart_total}}</h5>
                 </div>
 
             </div>
         </div>
+    <script type = 'text/javascript'>
 
+        var shipping = '{{order.check_shipping}}'
+
+        if (shipping == 'False'){
+           document.getElementById('shipping-info').innerHTML = ''
+        }
+    </script>
     {% endblock content %}
 </body>
 </html>
